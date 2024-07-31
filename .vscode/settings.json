@@ -1,0 +1,25 @@
+{
+  "editor.tabSize": 2,
+  "cSpell.words": [
+    "pino"
+  ],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+  "editor.formatOnSave": false,
+  "files.trimTrailingWhitespace": true,
+  // Runs Prettier, then ESLint
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.formatDocument": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "java.compile.nullAnalysis.mode": "disabled",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  }
+}

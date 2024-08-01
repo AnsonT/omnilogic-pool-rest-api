@@ -35,6 +35,7 @@ async function bootstrap(): Promise<void> {
       .build()
     const document = SwaggerModule.createDocument(app, options)
     SwaggerModule.setup('api', app, document)
+    logger.log('Swagger UI available at {/api, GET}')
   }
 
   await app.listen(PORT)

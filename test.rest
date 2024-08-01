@@ -1,4 +1,4 @@
-http://localhost:3000/v1/pool
+http://localhost:3000/v1/pool/telemetry
 Content-Type: application/json
 
 {

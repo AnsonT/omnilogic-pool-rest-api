@@ -100,7 +100,10 @@ export class OmniLogic {
       mspSystemId = mspSystemId || this.firstMspSystemId
       const { STATUS: response } = await this.callApi('GetTelemetryData', { MspSystemID: mspSystemId })
       console.dir(response, { depth: null })
-      return response
+      return {
+        site: this.systems[mspSystemId],
+        ...response,
+      }
     }
   }
 

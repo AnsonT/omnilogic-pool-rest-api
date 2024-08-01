@@ -1,1 +1,7 @@
-http://localhost:3000
+http://localhost:3000/v1/pool
+Content-Type: application/json
+
+{
+  "user": "{{$dotenv OMNILOGIC_USER}}",
+  "password": "{{$dotenv OMNILOGIC_PASSWORD}}"
+}

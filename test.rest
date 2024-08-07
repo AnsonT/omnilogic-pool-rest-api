@@ -5,3 +5,6 @@ Content-Type: application/json
   "user": "{{$dotenv OMNILOGIC_USER}}",
   "password": "{{$dotenv OMNILOGIC_PASSWORD}}"
 }
+
+###
+http://localhost:8081/metrics

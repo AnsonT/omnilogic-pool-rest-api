@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { LoggerErrorInterceptor, Logger as PinoLogger } from 'nestjs-pino'
 import { AppModule } from './app/app.module'
+import otelSDK from './services/metrics/tracing'
 
 import { config as dotEnvConfig } from 'dotenv'
 
@@ -15,9 +16,11 @@ declare const module: any
 
 async function bootstrap(): Promise<void> {
   const logger = new Logger('EntryPoint')
+  otelSDK.start()
 
   dotEnvConfig()
   const PORT = process.env.PORT ?? 3000
+  const METRICS_PORT = process.env.METRICS_PORT ?? 8081
 
   const app = await NestFactory.create(AppModule)
   app.useGlobalInterceptors(new LoggerErrorInterceptor())
@@ -44,6 +47,7 @@ async function bootstrap(): Promise<void> {
     module.hot.accept()
     module.hot.dispose(async () => { await app.close() })
   }
+  logger.log(`Metrics running on http://localhost:${METRICS_PORT}/metrics`)
   logger.log(`Server running on http://localhost:${PORT}`)
 
 }

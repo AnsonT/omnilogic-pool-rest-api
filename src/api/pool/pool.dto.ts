@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { Expose, Type } from 'class-transformer'
 import { IsNotEmpty, IsString } from 'class-validator'
 
 export class PoolAuthInput {
@@ -26,13 +27,15 @@ class SiteDto {
 
 class BackyardDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   statusVersion: string
 
   @ApiProperty()
-  airTemp: string
+  @Type(() => Number)
+  airTemp: number
 
   @ApiProperty()
   status: string
@@ -49,38 +52,47 @@ class BackyardDto {
 
 class BodyOfWaterDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
-  flow: string
+  @Type(() => Number)
+  flow: number
 
   @ApiProperty()
-  waterTemp: string
+  @Type(() => Number)
+  waterTemp: number
 }
 
 class FilterDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   valvePosition: string
 
   @ApiProperty()
-  filterSpeed: string
+  @Type(() => Number)
+  filterSpeed: number
 
   @ApiProperty()
   filterState: string
 
   @ApiProperty()
-  lastSpeed: string
+  @Type(() => Number)
+  lastSpeed: number
 }
 
 class VirtualHeaterDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
-  currentSetPoint: string
+  @Type(() => Number)
+  @Expose({ name: 'Current-Set-Point' })
+  currentSetPoint: number
 
   @ApiProperty()
   enable: string
@@ -88,7 +100,8 @@ class VirtualHeaterDto {
 
 class HeaterDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   heaterState: string
@@ -99,13 +112,16 @@ class HeaterDto {
 
 class ChlorinatorDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   operatingMode: string
 
   @ApiProperty()
-  timedPercent: string
+  @Type(() => Number)
+  @Expose({ name: 'Timed-Percent' })
+  timedPercent: number
 
   @ApiProperty()
   scMode: string
@@ -117,10 +133,12 @@ class ChlorinatorDto {
   chlrAlert: string
 
   @ApiProperty()
-  avgSaltLevel: string
+  @Type(() => Number)
+  avgSaltLevel: number
 
   @ApiProperty()
-  instantSaltLevel: string
+  @Type(() => Number)
+  instantSaltLevel: number
 
   @ApiProperty()
   status: string
@@ -131,7 +149,8 @@ class ChlorinatorDto {
 
 class ColorLogicLightDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   lightState: string
@@ -142,10 +161,12 @@ class ColorLogicLightDto {
 
 class CsadDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
-  ph: string
+  @Type(() => Number)
+  ph: number
 
   @ApiProperty()
   orp: string
@@ -159,7 +180,8 @@ class CsadDto {
 
 class GroupDto {
   @ApiProperty()
-  systemId: string
+  @Type(() => Number)
+  systemId: number
 
   @ApiProperty()
   groupState: string
@@ -167,33 +189,44 @@ class GroupDto {
 
 export class PoolTelemetryOutput {
   @ApiProperty({ type: SiteDto })
+  @Type(() => SiteDto)
   site: SiteDto
 
   @ApiProperty({ type: BackyardDto })
+  @Type(() => BackyardDto)
   Backyard: BackyardDto
 
   @ApiProperty({ type: BodyOfWaterDto })
+  @Type(() => BodyOfWaterDto)
   BodyOfWater: BodyOfWaterDto
 
   @ApiProperty({ type: FilterDto })
+  @Type(() => FilterDto)
   Filter: FilterDto
 
   @ApiProperty({ type: VirtualHeaterDto })
+  @Type(() => VirtualHeaterDto)
   VirtualHeater: VirtualHeaterDto
 
   @ApiProperty({ type: HeaterDto })
+  @Type(() => HeaterDto)
   Heater: HeaterDto
 
   @ApiProperty({ type: ChlorinatorDto })
+  @Type(() => ChlorinatorDto)
   Chlorinator: ChlorinatorDto
 
   @ApiProperty({ type: ColorLogicLightDto })
+  @Type(() => ColorLogicLightDto)
+  @Expose({ name: 'ColorLogic-Light' })
   ColorLogicLight: ColorLogicLightDto
 
   @ApiProperty({ type: CsadDto })
+  @Type(() => CsadDto)
   CSAD: CsadDto
 
   @ApiProperty({ type: [GroupDto] })
+  @Type(() => GroupDto)
   Group: GroupDto[]
 
   @ApiProperty()

@@ -54,7 +54,7 @@ export class OmniLogic {
 
   async login(): Promise<LoginResponse | null> {
     const response = await this.callApi<LoginResponse>('Login', { UserName: this.userName, Password: this.password })
-    console.dir(response, { depth: null })
+    // console.dir(response, { depth: null })
     if (response.status === 0 && response.token && response.userId) {
       this.token = response.token
       this.userId = response.userId
@@ -99,7 +99,7 @@ export class OmniLogic {
       }
       mspSystemId = mspSystemId || this.firstMspSystemId
       const { STATUS: response } = await this.callApi('GetTelemetryData', { MspSystemID: mspSystemId })
-      console.dir(response, { depth: null })
+      // console.dir(response, { depth: null })
       return {
         site: this.systems[mspSystemId],
         ...response,
@@ -118,8 +118,8 @@ export class OmniLogic {
     }
     const request = this.formatRequest(command, params)
     const { data } = await axios.post(this.url, request, { headers })
-    console.log(data)
-    console.log('---------------')
+    // console.log(data)
+    // console.log('---------------')
     if (command === 'GetMspConfigFile') {
       return xmlParser.parse(data)
     } if (command === 'GetTelemetryData') {
@@ -137,7 +137,7 @@ export class OmniLogic {
       name: Name,
       parameters: {}
     }
-    console.dir(Parameter, { depth: null })
+    // console.dir(Parameter, { depth: null })
     Parameter.forEach((p) => {
       if (p['@@dataType'] === 'object') {
         const list = p?.Item?.Property || []

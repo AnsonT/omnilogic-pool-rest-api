@@ -20,5 +20,5 @@ COPY --from=builder /app .
 
 USER api
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/src/main.js"]
 

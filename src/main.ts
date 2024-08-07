@@ -6,6 +6,8 @@ import { AppModule } from './app/app.module'
 import otelSDK from './services/metrics/tracing'
 
 import { config as dotEnvConfig } from 'dotenv'
+import { GeneralErrorFilter } from './middleware/generalError.filter'
+import { HttpExceptionFilter } from './middleware/httpException.filter'
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -24,6 +26,8 @@ async function bootstrap(): Promise<void> {
 
   const app = await NestFactory.create(AppModule)
   app.useGlobalInterceptors(new LoggerErrorInterceptor())
+  app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalFilters(new GeneralErrorFilter())
 
   app.useLogger(app.get(PinoLogger))
   app.useGlobalPipes(new ValidationPipe({ transform: true }))

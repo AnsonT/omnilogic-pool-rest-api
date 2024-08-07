@@ -10,7 +10,7 @@ export class PoolController {
   @Get('/v1/pool/telemetry')
   @ApiResponse({ status: 200, description: 'The found record', type: PoolTelemetryOutput })
   async getPoolTelemetryV1(@Body() input: PoolAuthInput): Promise<PoolTelemetryOutput> {
-    return await this.poolService.getPoolTelemetry(input)
+    return await this.poolService.getPoolTelemetry(input, { coerceOutput: false })
   }
 
   @Get('/v2/pool/telemetry')

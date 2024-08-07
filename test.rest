@@ -9,7 +9,7 @@ Content-Type: application/json
 ###
 http://localhost:3000/v2/pool/telemetry
 Content-Type: application/json
-x-omnilogic-user: {{$dotenv OMNILOGIC_USER}}
+x-omnilogic-user: {{$dotenv OMNILOGIC_USER}}e
 x-omnilogic-password: {{$dotenv OMNILOGIC_PASSWORD}}
 
 ###

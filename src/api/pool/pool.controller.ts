@@ -1,15 +1,21 @@
-import { Controller, Get, Headers } from '@nestjs/common'
+import { Body, Controller, Get, Headers } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
-import { PoolTelemetryOutput } from './pool.dto'
+import { PoolAuthInput, PoolTelemetryOutput } from './pool.dto'
 import { PoolService } from './pool.service'
 
-@Controller('/v1/pool')
+@Controller()
 export class PoolController {
   constructor(private readonly poolService: PoolService) {}
 
-  @Get('/telemetry')
+  @Get('/v1/pool/telemetry')
   @ApiResponse({ status: 200, description: 'The found record', type: PoolTelemetryOutput })
-  async getPoolTelemetry(@Headers() headers): Promise<PoolTelemetryOutput> {
+  async getPoolTelemetryV1(@Body() input: PoolAuthInput): Promise<PoolTelemetryOutput> {
+    return await this.poolService.getPoolTelemetry(input)
+  }
+
+  @Get('/v2/pool/telemetry')
+  @ApiResponse({ status: 200, description: 'The found record', type: PoolTelemetryOutput })
+  async getPoolTelemetryV2(@Headers() headers): Promise<PoolTelemetryOutput> {
     return await this.poolService.getPoolTelemetry({
       user: headers['x-omnilogic-user'],
       password: headers['x-omnilogic-password'],

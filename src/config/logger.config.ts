@@ -38,6 +38,7 @@ export default function getLoggerConfig () {
             }) {
               const { vector: _1, signedPayload: _2, ...body } = req.raw.body
               if (body?.imageData) body.imageData = '...'
+              if (body?.password) body.password = '***'
               // req.httpVersion = req.raw.httpVersion
               req.params = req.raw.params
               req.query = req.raw.query
